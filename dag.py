@@ -137,26 +137,26 @@ with DAG(
     start_date=datetime(2021, 1, 1),
     tags=["example"],
 ) as dag:
-    k = KubernetesPodOperator(
-        namespace="default",
-        image="ubuntu:16.04",
-        cmds=["bash", "-cx"],
-        arguments=["echo", "10"],
-        labels={"foo": "bar"},
-        # secrets=[secret_file, secret_env, secret_all_keys],
-        # ports=[port],
-        # volumes=[volume],
-        # volume_mounts=[volume_mount],
-        # env_from=configmaps,
-        name="airflow-test-pod",
-        task_id="task",
-        # affinity=affinity,
-        on_finish_action="delete_pod",
-        hostnetwork=False,
-        # tolerations=tolerations,
-        init_containers=[init_container],
-        priority_class_name="medium",
-    )
+    # k = KubernetesPodOperator(
+    #     namespace="default",
+    #     image="ubuntu:16.04",
+    #     cmds=["bash", "-cx"],
+    #     arguments=["echo", "10"],
+    #     labels={"foo": "bar"},
+    #     # secrets=[secret_file, secret_env, secret_all_keys],
+    #     # ports=[port],
+    #     # volumes=[volume],
+    #     # volume_mounts=[volume_mount],
+    #     # env_from=configmaps,
+    #     name="airflow-test-pod",
+    #     task_id="task",
+    #     # affinity=affinity,
+    #     on_finish_action="delete_pod",
+    #     hostnetwork=False,
+    #     # tolerations=tolerations,
+    #     init_containers=[init_container],
+    #     priority_class_name="medium",
+    # )
 
     # [START howto_operator_k8s_private_image]
     # quay_k8s = KubernetesPodOperator(
@@ -176,7 +176,7 @@ with DAG(
 
     # [START howto_operator_k8s_write_xcom]
     write_xcom = KubernetesPodOperator(
-        namespace="default",
+        # namespace="default",
         image="alpine",
         cmds=[
             "sh",
@@ -185,7 +185,7 @@ with DAG(
         ],
         name="write-xcom",
         do_xcom_push=True,
-        on_finish_action="delete_pod",
+        # on_finish_action="delete_pod",
         in_cluster=True,
         task_id="write-xcom",
         get_logs=True,
